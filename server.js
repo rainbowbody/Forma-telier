@@ -1,15 +1,16 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-
+const express = require("express");
 const app = express();
-const port = 3000;
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public'));
+const port = process.env.PORT || 5000;
 
-app.post('/submit-inquiry', (req, res) => {
-  console.log(req.body);
-  res.send('Inquiry submitted! Thank you.');
+app.get("/", (req, res) => {
+  return res.status(200).send({
+    message: "Hello World!",
+  });
 });
 
-app.listen(port, () => console.log(`Server running at http://localhost:${port}`));
+app.listen(port, () => {
+  console.log("Listening on " + port);
+});
+
+module.exports = app;
